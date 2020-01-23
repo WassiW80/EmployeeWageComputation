@@ -4,13 +4,15 @@ EMPLOYEE_WORKING_FULLTIME=1
 EMPLOYEE_WORKING_PARTTIME=2
 EMPLOYEE_RATE_PER_WAGE=20
 employeeCheck=$((RANDOM%3))
-if [ $employeeCheck -eq $EMPLOYEE_WORKING_FULLTIME ]
-then
-	employeeHours=8
-elif [ $employeeCheck -eq $EMPLOYEE_WORKING_PARTTIME ]
-then
-	employeeHours=4
-else
-	employeeHours=0
-fi
+case $employeeCheck in
+	$EMPLOYEE_WORKING_FULLTIME)
+		employeeHours=8
+		;;
+	$EMPLOYEE_WORKING_PARTTIME)
+		employeeHours=4
+		;;
+	*)
+		employeeHours=0
+		;;
+esac
 employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_WAGE))
