@@ -25,7 +25,11 @@ esac
 echo $employeeHours
 }
 
+<<<<<<< HEAD
 function calculatingDailyWage(){
+=======
+function calculatingDailyWage() {
+>>>>>>> StoringDailyWage
 	local employeeHours=$1
 	wage=$(($employeeHours*$EMPLOYEE_RATE_PER_WAGE))
 	echo $wage
@@ -39,5 +43,11 @@ do
 	totalEmployeeHours=$(($totalEmployeeHours+$employeeHours))
 	employeeDailyWage[$totalWorkingDays]="$( calculatingDailyWage $employeeHours )"
 done
+<<<<<<< HEAD
 totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_WAGE))
 echo "Daily Wage " ${employeeDailyWage[@]}
+=======
+totalSalary="$( calculatingDailyWage $totalEmployeeHours )"
+echo "Daily Wage " ${employeeDailyWage[@]}
+
+>>>>>>> StoringDailyWage
