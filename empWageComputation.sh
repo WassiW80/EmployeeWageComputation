@@ -1,11 +1,18 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage"
+#Constant
 EMPLOYEE_WORKING_FULLTIME=1
 EMPLOYEE_WORKING_PARTTIME=2
 EMPLOYEE_RATE_PER_WAGE=20
+MAXIMUM_HOURS_OF_WORKING=100
+NUMBER_OF_WORKING_DAYS=20
+#Variable
+totalEmployeeHours=0
+totalWorkingDays=0
 
-for((counter=0;counter<=20;counter++))
+while [[ $totalEmployeeHours -lt $MAXIMUM_HOURS_OF_WORKING && $totalWorkingDays -lt $NUMBER_OF_WORKING_DAYS ]]
 do
+	((totalWorkingDays++))
 	employeeCheck=$((RANDOM%3))
 	case $employeeCheck in
 		$EMPLOYEE_WORKING_FULLTIME)
@@ -18,6 +25,7 @@ do
 			employeeHours=0
 			;;
 	esac
-employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_WAGE))
-totalSalary=$(($totalSalary+$employeeSalary))
+	totalEmployeeHours=$(($totalEmployeeHours+$employeeHours))
 done
+totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_WAGE))
+
