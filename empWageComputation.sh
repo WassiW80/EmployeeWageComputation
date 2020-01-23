@@ -1,10 +1,12 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage"
 EMPLOYEE_IS_PRESENT=1
+EMPLOYEE_RATE_PER_WAGE=20
 employeeCheck=$((RANDOM%2))
 if [ $employeeCheck -eq $EMPLOYEE_IS_PRESENT ]
 then
-	echo "Employee is Present"
+	empHours=8
+	employeeSalary=$(($empHours*$EMPLOYEE_RATE_PER_WAGE))
 else
-	echo "Employee is Absent"
+	employeeSalary=0
 fi
