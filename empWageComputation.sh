@@ -25,12 +25,20 @@ esac
 echo $employeeHours
 }
 
+function calculatingDailyWage() {
+	local employeeHours=$1
+	wage=$(($employeeHours*$EMPLOYEE_RATE_PER_WAGE))
+	echo $wage
+}
+
 while [[ $totalEmployeeHours -lt $MAXIMUM_HOURS_OF_WORKING && $totalWorkingDays -lt $NUMBER_OF_WORKING_DAYS ]]
 do
 	((totalWorkingDays++))
 	employeeCheck=$((RANDOM%3))
 	employeeHours="$( checkEmployeeWorkingHours $employeeCheck )"
 	totalEmployeeHours=$(($totalEmployeeHours+$employeeHours))
+	employeeDailyWage[$totalWorkingDays]="$( calculatingDailyWage $employeeHours )"
 done
-totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_WAGE))
+totalSalary="$( calculatingDailyWage $totalEmployeeHours )"
+echo "Daily Wage " ${employeeDailyWage[@]}
 
