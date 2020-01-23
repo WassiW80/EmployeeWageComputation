@@ -37,8 +37,9 @@ do
 	employeeCheck=$((RANDOM%3))
 	employeeHours="$( checkEmployeeWorkingHours $employeeCheck )"
 	totalEmployeeHours=$(($totalEmployeeHours+$employeeHours))
-	employeeDailyWage[$totalWorkingDays]="$( calculatingDailyWage $employeeHours )"
+	employeeDailyWage[Day"$totalWorkingDays"]="$( calculatingDailyWage $employeeHours )"
 done
 totalSalary="$( calculatingDailyWage $totalEmployeeHours )"
 echo "Daily Wage " ${employeeDailyWage[@]}
+echo ${!employeeDailyWage[@]}
 
