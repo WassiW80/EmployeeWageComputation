@@ -1,12 +1,16 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage"
-EMPLOYEE_IS_PRESENT=1
+EMPLOYEE_WORKING_FULLTIME=1
+EMPLOYEE_WORKING_PARTTIME=2
 EMPLOYEE_RATE_PER_WAGE=20
-employeeCheck=$((RANDOM%2))
-if [ $employeeCheck -eq $EMPLOYEE_IS_PRESENT ]
+employeeCheck=$((RANDOM%3))
+if [ $employeeCheck -eq $EMPLOYEE_WORKING_FULLTIME ]
 then
-	empHours=8
-	employeeSalary=$(($empHours*$EMPLOYEE_RATE_PER_WAGE))
+	employeeHours=8
+elif [ $employeeCheck -eq $EMPLOYEE_WORKING_PARTTIME ]
+then
+	employeeHours=4
 else
-	employeeSalary=0
+	employeeHours=0
 fi
+employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_WAGE))
